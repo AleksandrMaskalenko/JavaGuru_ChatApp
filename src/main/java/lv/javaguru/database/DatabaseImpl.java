@@ -35,5 +35,4 @@ public class DatabaseImpl implements Database {
                 .filter(u -> u.getUserName().equals(userName))
                 .findFirst();
     }
-
 }

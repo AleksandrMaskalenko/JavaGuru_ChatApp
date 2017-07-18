@@ -14,5 +14,4 @@ public interface Database {
     List<User> getAllUsers();
 
     Optional<User> getUserByUserName(String UserName);
-
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserDAO {
     boolean addUser(String userName, int phone, String email);
 
-    User getUser(String userName);
+    boolean getUser(String userName);
 
 
     List<User> findUser();
@@ -16,5 +16,4 @@ public interface UserDAO {
     void saveUser();
 
     List<User> getAllUsers();
-
 }

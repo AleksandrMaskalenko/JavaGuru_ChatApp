@@ -29,18 +29,17 @@ public class UserService implements UserDAO {
         } else {
             dao.addUser(user);
             return true;
-
         }
     }
 
     @Override
-    public User getUser(String userName) {
+    public boolean getUser(String userName) {
         Optional<User> foundUser = dao.getUserByUserName(userName);
         if (foundUser.isPresent()) {
             User user = foundUser.get();
-            return user;
+            return true;
         }
-        return null;/// ????????
+        return false;
     }
 
     @Override
