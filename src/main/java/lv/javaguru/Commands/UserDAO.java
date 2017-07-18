@@ -16,4 +16,5 @@ public interface UserDAO {
     void saveUser();
 
     List<User> getAllUsers();
+
 }

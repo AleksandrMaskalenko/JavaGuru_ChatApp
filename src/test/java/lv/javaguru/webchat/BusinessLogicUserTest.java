@@ -42,5 +42,4 @@ public class BusinessLogicUserTest {
         assertThat(result, is(false));
     }
 
-
 }
