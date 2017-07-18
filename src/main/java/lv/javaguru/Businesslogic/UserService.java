@@ -8,28 +8,30 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserService implements UserDAO{
+public class UserService implements UserDAO {
 
-   private Database dao;
+    private Database dao;
 
-   public UserService(Database dao) {this.dao = dao;}
+    public UserService(Database dao) {
+        this.dao = dao;
+    }
 
 
-   @Override
+    @Override
     public boolean addUser(String userName, int phone, String email) {
-       User user = new User();
-       user.setUserName(userName);
-       user.setPhone(phone);
-       user.setEmail(email);
+        User user = new User();
+        user.setUserName(userName);
+        user.setPhone(phone);
+        user.setEmail(email);
 
-       if (alreadyExists(user)) {
-           return false;
-       } else {
-           dao.addUser(user);
-           return true;
+        if (alreadyExists(user)) {
+            return false;
+        } else {
+            dao.addUser(user);
+            return true;
 
-       }
-   }
+        }
+    }
 
     @Override
     public User getUser(String userName) {
@@ -52,9 +54,12 @@ public class UserService implements UserDAO{
     }
 
     @Override
-    public List<User> getAllUsers() {return dao.getAllUsers();}
-
-    private boolean alreadyExists(User user) {return dao.getUserByUserName(user.getUserName()).isPresent(); }
-
+    public List<User> getAllUsers() {
+        return dao.getAllUsers();
     }
+
+    private boolean alreadyExists(User user) {
+        return dao.getUserByUserName(user.getUserName()).isPresent();
+    }
+}
 

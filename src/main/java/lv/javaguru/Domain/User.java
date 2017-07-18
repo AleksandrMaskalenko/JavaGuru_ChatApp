@@ -27,10 +27,6 @@ public class User {
     }
 
 
-
-
-
-
     public String getUserName() {
         return userName;
     }
@@ -58,4 +54,5 @@ public class User {
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         return email != null ? email.equals(user.email) : user.email == null;
     }*/
+
 }
