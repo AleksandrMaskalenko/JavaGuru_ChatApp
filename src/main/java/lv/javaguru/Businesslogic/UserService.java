@@ -2,15 +2,19 @@ package lv.javaguru.Businesslogic;
 
 import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.User;
-import lv.javaguru.database.Database;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+public class UserService  {
 
-public class UserService implements UserDAO {
+    @Autowired
+    private UserDAO userDAO;
 
-    private Database dao;
+    /*private Database dao;
 
     public UserService(Database dao) {
         this.dao = dao;
@@ -60,6 +64,6 @@ public class UserService implements UserDAO {
 
     private boolean alreadyExists(User user) {
         return dao.getUserByUserName(user.getUserName()).isPresent();
-    }
+    }*/
 }
 

@@ -1,14 +1,24 @@
 package lv.javaguru.Domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
+
     private String password;
     private int phone;
     private String email;
     private int role_id;
-
     private String userName;
+
+    public User() {
+    }
 
     public int getUser_id() {
         return user_id;
@@ -33,7 +43,6 @@ public class User {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-
 
     public String getUserName() {
         return userName;
