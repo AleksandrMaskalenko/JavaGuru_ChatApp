@@ -2,13 +2,21 @@ package lv.javaguru.Domain;
 
 
 public class User {
+    private int user_id;
     private String password;
     private int phone;
     private String email;
     private int role_id;
-    private int friendList_id;
 
     private String userName;
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public String getPassword() {
         return password;

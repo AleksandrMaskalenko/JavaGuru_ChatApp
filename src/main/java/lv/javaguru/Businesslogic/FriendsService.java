@@ -1,7 +1,7 @@
 package lv.javaguru.Businesslogic;
 
-import lv.javaguru.Commands.FriendListDAO;
-import lv.javaguru.Domain.Friends;
+import lv.javaguru.DAO.FriendListDAO;
+import lv.javaguru.Domain.FriendList;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class FriendsService implements FriendListDAO{
     }
 
     @Override
-    public List<Friends> getAllFriends() {
+    public List<FriendList> getAllFriends() {
         return null;
     }
 }

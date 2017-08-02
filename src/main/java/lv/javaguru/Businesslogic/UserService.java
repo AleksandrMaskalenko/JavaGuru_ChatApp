@@ -1,6 +1,6 @@
 package lv.javaguru.Businesslogic;
 
-import lv.javaguru.Commands.UserDAO;
+import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.User;
 import lv.javaguru.database.Database;
 

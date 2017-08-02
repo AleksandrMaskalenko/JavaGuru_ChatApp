@@ -1,4 +1,4 @@
-package lv.javaguru.Commands;
+package lv.javaguru.DAO;
 
 
 public interface RoleDAO {
