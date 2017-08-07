@@ -1,3 +1,5 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
 CREATE TABLE role (
   role_id INT                 NOT NULL  AUTO_INCREMENT PRIMARY KEY,
   role VARCHAR(255)           NOT NULL
@@ -10,6 +12,7 @@ CREATE TABLE user (
   phone INT                   NOT NULL,
   email VARCHAR(255)          NOT NULL,
   role_id INT                 NOT NULL,
+
 
   FOREIGN KEY (role_id)       REFERENCES role(role_id)
 )
