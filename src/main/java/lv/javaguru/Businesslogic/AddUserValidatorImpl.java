@@ -30,8 +30,9 @@ public class AddUserValidatorImpl implements AddUserValidator {
 
     @Override
     public boolean alreadyExist(String userName) {
-        // TO DO, when DB will work
-
+       //
+       //
+       //
         return false;
     }
 

@@ -1,20 +1,28 @@
 package lv.javaguru.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name= "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
+    @Column(name = "password")
     private String password;
+    @Transient
+    transient private String comfirmPassword;
+
+
     private int phone;
     private String email;
-    private int role_id;
+
+    private List<Role> roles;
+    //private int role_id;
+
+    @Column(name = "username")
     private String userName;
 
     public User() {
