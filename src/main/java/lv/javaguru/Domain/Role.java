@@ -5,13 +5,17 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int role_id;
-    private String role;
+
+    @Column(name = "role_name")
+    private String roleName;
+
+    @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
     public Role() {
@@ -19,6 +23,7 @@ public class Role {
 
 
     public int getRole_id() {
+
         return role_id;
     }
 
@@ -26,11 +31,19 @@ public class Role {
         this.role_id = role_id;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

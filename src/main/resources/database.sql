@@ -1,22 +1,34 @@
 -- noinspection SqlNoDataSourceInspectionForFile
 
-CREATE TABLE role (
-  role_id INT                 NOT NULL  AUTO_INCREMENT PRIMARY KEY,
-  role VARCHAR(255)           NOT NULL
-)
-  ENGINE = InnoDB;
-
-CREATE TABLE user (
-  user_id INT                 NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-- Table : users
+CREATE TABLE users (
+  user_id INT                 NOT NULL  AUTO_INCREMENT PRIMARY KEY,
+  user_name VARCHAR(255)      NOT NULL,
   password VARCHAR(255)       NOT NULL,
   phone INT                   NOT NULL,
-  email VARCHAR(255)          NOT NULL,
-  role_id INT                 NOT NULL,
+  email VARCHAR(255)          NOT NULL
+  )
+  ENGINE = InnoDB;
 
-
-  FOREIGN KEY (role_id)       REFERENCES role(role_id)
+-- Table: roles
+CREATE TABLE roles (
+  id INT                      NOT NULL  AUTO_INCREMENT PRIMARY KEY,
+  role_name VARCHAR(255)      NOT NULL
 )
   ENGINE = InnoDB;
+
+
+
+-- Table for mapping user and roles: user_roles
+CREATE TABLE user_roles (
+  user_id INT                 NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  role_id INT                 NOT NULL,
+
+  FOREIGN KEY (user_id)       REFERENCES users(user_id),
+  FOREIGN KEY (role_id)       REFERENCES roles(id)
+)
+  ENGINE = InnoDB;
+
 
 CREATE TABLE friendList (
   user_id INT                 NOT NULL,

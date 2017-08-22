@@ -1,29 +1,38 @@
 package lv.javaguru.Domain;
 
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name= "user")
+@Table(name= "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
+
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
     @Transient
     transient private String comfirmPassword;
 
-
+    @Column (name = "phone")
     private int phone;
+
+    @Column (name = "email")
     private String email;
 
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
-    //private int role_id;
 
-    @Column(name = "username")
-    private String userName;
+
+
 
     public User() {
     }
@@ -78,7 +87,6 @@ public class User {
 
         if (user_id != user.user_id) return false;
         if (phone != user.phone) return false;
-        if (role_id != user.role_id) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         return userName != null ? userName.equals(user.userName) : user.userName == null;
@@ -90,7 +98,6 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + phone;
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + role_id;
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         return result;
     }

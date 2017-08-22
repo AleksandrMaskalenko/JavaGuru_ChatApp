@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Integer> {
+    User findByUserName(String username);
+
 
    //boolean addUser(String userName, int phone, String email);
     //boolean getUser(String userName);
