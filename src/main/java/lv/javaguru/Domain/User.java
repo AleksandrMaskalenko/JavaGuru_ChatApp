@@ -1,8 +1,6 @@
 package lv.javaguru.Domain;
 
-
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -22,7 +20,7 @@ public class User {
     private String email;
 
     private List<Role> roles;
-    private int role_id;
+    //private int role_id;
 
     @Column(name = "username")
     private String userName;
@@ -37,7 +35,6 @@ public class User {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
-
 
     public String getPassword() {
         return password;
