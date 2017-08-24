@@ -7,10 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Participants {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int particip_id;
-
     private int conv_id;
     private int user_id;
     private boolean status;
@@ -18,13 +14,6 @@ public class Participants {
     public Participants() {
     }
 
-    public int getParticip_id() {
-        return particip_id;
-    }
-
-    public void setParticip_id(int particip_id) {
-        this.particip_id = particip_id;
-    }
 
     public int getConv_id() {
         return conv_id;

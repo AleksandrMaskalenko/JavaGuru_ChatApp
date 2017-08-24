@@ -1,0 +1,13 @@
+<div class="wrapper">
+    <div class="container">
+    
+    <div class="col-lg-12 table">
+        <form class="input-group" data-ng-keyup="$event.keyCode == 13 && findSong()">
+            <input class="form-control" placeholder="Search" data-ng-model="find" onkeypress="handle(event)">
+            <span class="input-group-btn">
+            			<a class="btn btn-secondary" type="button" data-ng-click="findSong()">Go!</a>
+        			</span>
+        </form>
+    </div>
+    </div>
+</div> 

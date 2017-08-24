@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParticipantsDAO extends JpaRepository<Participants, Integer>{
+    void deleteUserFromParticipants(int id);
+
 }

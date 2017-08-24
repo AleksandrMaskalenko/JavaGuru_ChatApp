@@ -13,6 +13,7 @@ public class Conversation {
 
     private String title;
     private int creationDate;
+    private int user_id;
 
     public Conversation() {
     }
@@ -39,5 +40,13 @@ public class Conversation {
 
     public void setCreationDate(int creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

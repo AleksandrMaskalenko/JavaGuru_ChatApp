@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface FriendListDAO extends JpaRepository<FriendList, Integer> {
 
-   /* void addFriend(User user);
-    void deleteFriend(int id);
-    List<FriendList> getAllFriends(int id);*/
+    List<User> loadFriends(int id);
+
 }

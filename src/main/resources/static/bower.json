@@ -1,0 +1,21 @@
+{
+  "name": "resources",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/AleksandrMaskalenko/JavaGuru_ChatApp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.6",
+    "bootstrap": "v4.0.0-beta",
+    "jquery": "3.2.1",
+    "angular-ui-router": "1.0.6",
+    "iCheck": "^1.0.2"
+  }
+}

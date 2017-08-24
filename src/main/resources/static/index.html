@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chat</title>
+
+    <link rel="stylesheet" href="app/css/style.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/popper.js/dist/popper.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app/js/services/scroll.js"></script>
+
+    <script src="app/js/app.js"></script>
+    <script src="app/js/route.js"></script>
+    <script src="app/js/services/chat-service.js"></script>
+    <!--<script src="app/js/services/auth-service.js"></script>-->
+    <!--<script src="app/js/controllers/login.js"></script>-->
+    <script src="app/js/controllers/nav.js"></script>
+    <!--<script src="app/js/controllers/user-config.js"></script>-->
+    <!--<script src="app/js/controllers/chat.js"></script>-->
+
+</head> 
+    
+    <div class="row hat">
+        <div class="large-12 columns">
+            <ul class="log-in right">
+                <li><a href="#">Sign In</a></li>
+                <li><a href="#">Join</a></li>
+                <li><a href="#">Search</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <body data-ng-app="myApp">
+
+        <div data-ui-view="nav" ></div>
+
+        <div class="container" >
+            <div data-ui-view="content"></div>
+        </div>
+
+    </body>
+</html>

@@ -30,7 +30,8 @@ CREATE TABLE friendList (
 CREATE TABLE conversation (
   conv_id INT                 NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255)          NOT NULL,
-  creationDate INT            NOT NULL
+  creationDate INT            NOT NULL,
+  user_id INT                 NOT NULL
 )
   ENGINE = InnoDB;
 
@@ -47,7 +48,6 @@ CREATE TABLE convMessage (
   ENGINE = InnoDB;
 
 CREATE TABLE participants (
-  particip_id INT             NOT NULL AUTO_INCREMENT PRIMARY KEY,
   conv_id INT                 NOT NULL,
   user_id INT                 NOT NULL,
   status BOOLEAN              NOT NULL,

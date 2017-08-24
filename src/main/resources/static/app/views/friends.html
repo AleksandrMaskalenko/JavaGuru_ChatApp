@@ -1,0 +1,34 @@
+<div class="wrapper">
+    <div class="container">
+
+    <div class="alert alert-info margin-top-5 col-sm-3 message" data-ng-show="message">{{message}}</div>
+
+    <div>
+        <table class="table">
+            <thead class="thead-default">
+            <tr>
+                <th>Icon</th>
+                <th>Name</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+ 
+            <tbody>
+            <tr data-ng-repeat="friend in friends" >
+
+                <td>{{friend.icon}}</td>
+                <td>{{friend.name}}</td>
+                <td>
+                    <a data-ng-click="Write(friend)" class="btn btn-info btn-sm" role="button">Write message!</a>
+                </td>
+
+                <td>
+                    <a data-ng-click="Delete(friend)" class="btn btn-info btn-sm" role="button">Delete friend</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+<div class="wrapper">
