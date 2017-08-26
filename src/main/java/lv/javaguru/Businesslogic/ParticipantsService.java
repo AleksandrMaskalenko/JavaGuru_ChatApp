@@ -13,10 +13,10 @@ public class ParticipantsService {
 
     public void addParticipant(int id) {
 
-        Participants participants = new Participants();
-        participants.setUser_id(id);
+//        Participants participants = new Participants();
+//        participants.setUser_id(id);
 
-        participantsDAO.save(participants);
+//        participantsDAO.save(participants);
     }
 
     public void deleteParticipant(int id) {

@@ -1,21 +1,34 @@
 package lv.javaguru.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+import javax.persistence.*;
+import java.util.List;
+
+
 public class Conversation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int conv_id;
-
     private String title;
     private int creationDate;
-    private int user_id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne
+    @JoinColumn(name = "part_id")
+    private Participants participants;
 
     public Conversation() {
+    }
+
+    public Conversation(String title, int creationDate, User user, Participants participants) {
+        this.title = title;
+        this.creationDate = creationDate;
+        this.user = user;
+        this.participants = participants;
     }
 
     public int getConv_id() {
@@ -42,11 +55,19 @@ public class Conversation {
         this.creationDate = creationDate;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Participants getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Participants participants) {
+        this.participants = participants;
     }
 }

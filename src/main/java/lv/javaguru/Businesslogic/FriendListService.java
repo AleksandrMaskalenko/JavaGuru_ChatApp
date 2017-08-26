@@ -19,7 +19,14 @@ public class FriendListService {
 
     public List<User> getFriendList(int id) {
         return friendListDAO.loadFriends(id);
-
     }
 
+    public FriendList getFriend(int id) {
+        return friendListDAO.findOne(id);
+    }
+
+    public List<FriendList> getAllFriends() {
+        return friendListDAO.findAll();
+
+    }
 }

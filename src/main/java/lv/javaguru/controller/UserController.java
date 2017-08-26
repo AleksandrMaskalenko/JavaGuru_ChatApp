@@ -14,9 +14,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/{userName}")
-    public User getUser(@PathVariable String userName) {
-        return userService.getUser(userName);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public User getUser(@PathVariable int id) {
+        return userService.getUserById(id);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -24,9 +24,9 @@ public class UserController {
         userService.saveUser(user);
     }
 
-    @RequestMapping(value = "/delete/{userName}")
-    public void deleteUser(@PathVariable String userName) {
-        userService.deleteUser(userName);
+    @RequestMapping(value = "/delete/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
     }
 
     @RequestMapping(value = "/find/{userName}")

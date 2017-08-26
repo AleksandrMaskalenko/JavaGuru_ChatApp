@@ -1,22 +1,31 @@
 package lv.javaguru.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+
 public class ConvMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int message_id;
-
-    private int conv_id;
-    private int user_id;
     private String text;
     private int date;
 
+    @OneToOne
+    @JoinColumn(name = "conv_id")
+    private Conversation conversation;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public ConvMessage() {
+    }
+
+    public ConvMessage(String text, int date, Conversation conversation, User user) {
+        this.text = text;
+        this.date = date;
+        this.conversation = conversation;
+        this.user = user;
     }
 
     public int getMessage_id() {
@@ -25,22 +34,6 @@ public class ConvMessage {
 
     public void setMessage_id(int message_id) {
         this.message_id = message_id;
-    }
-
-    public int getConv_id() {
-        return conv_id;
-    }
-
-    public void setConv_id(int conv_id) {
-        this.conv_id = conv_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getText() {
@@ -57,5 +50,21 @@ public class ConvMessage {
 
     public void setDate(int date) {
         this.date = date;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

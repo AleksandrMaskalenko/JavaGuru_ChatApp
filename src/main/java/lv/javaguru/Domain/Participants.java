@@ -1,41 +1,50 @@
 package lv.javaguru.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-@Entity
+
 public class Participants {
-    private int conv_id;
-    private int user_id;
-    private boolean status;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int part_id;
+
+    @OneToOne(mappedBy = "participants")
+    private Conversation conversation;
+
+    @OneToMany(mappedBy = "participants")
+    private List<User> users;
 
     public Participants() {
     }
 
-
-    public int getConv_id() {
-        return conv_id;
+    public Participants(Conversation conversation, List<User> users) {
+        this.conversation = conversation;
+        this.users = users;
     }
 
-    public void setConv_id(int conv_id) {
-        this.conv_id = conv_id;
+    public int getPart_id() {
+        return part_id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public void setPart_id(int part_id) {
+        this.part_id = part_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public Conversation getConversation() {
+        return conversation;
     }
 
-    public boolean isStatus() {
-        return status;
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

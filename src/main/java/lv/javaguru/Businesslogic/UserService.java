@@ -17,19 +17,21 @@ public class UserService {
     @Autowired
     private RoleDAO roleDAO;
 
-   // private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public User getUser(String userName) {
-        return userDAO.findOne(userName);
+    public User getUserById(int id) {
+        return userDAO.findOne(id);
     }
+
+//    public User getUser(String userName) {
+//        return userDAO.findUserByName(userName);
+//    }
 
 
     public void saveUser(User user) {
         userDAO.save(user);
     }
 
-    public void deleteUser(String userName) {
-        userDAO.delete(userName);
+    public void deleteUser(int id) {
+        userDAO.delete(id);
     }
 
     public List<User> findUser(String userName) {
