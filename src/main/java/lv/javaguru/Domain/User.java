@@ -30,6 +30,32 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (user_id != user.user_id) return false;
+        if (phone != user.phone) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        return role != null ? role.equals(user.role) : user.role == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user_id;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + phone;
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        return result;
+    }
+
     public int getUser_id() {
         return user_id;
     }

@@ -21,11 +21,6 @@ public class UserService {
         return userDAO.findOne(id);
     }
 
-//    public User getUser(String userName) {
-//        return userDAO.findUserByName(userName);
-//    }
-
-
     public void saveUser(User user) {
         userDAO.save(user);
     }
@@ -34,7 +29,7 @@ public class UserService {
         userDAO.delete(id);
     }
 
-    public List<User> findUser(String userName) {
-        return userDAO.findUserByName(userName);
-    }
+    public List<User> findUser(String userName) {return userDAO.findUserByName(userName);}
+
+   // public List<User> createUser { User user = new User()}
 }
