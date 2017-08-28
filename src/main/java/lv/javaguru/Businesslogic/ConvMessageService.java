@@ -18,7 +18,7 @@ public class ConvMessageService {
 
     }
 
-    public List<ConvMessage> getMessages(int id) {
-        return convMessageDAO.getMessages(id);
+    public List<ConvMessage> getMessages(int conv_id) {
+        return convMessageDAO.getMessages(conv_id);
     }
 }

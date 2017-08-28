@@ -1,34 +1,33 @@
 package lv.javaguru.Domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.List;
 
-
+@Entity
+@Table(name = "conversation")
 public class Conversation {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "conv_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int conv_id;
+
+    @Column(name = "title")
     private String title;
-    private int creationDate;
+
+    @Column(name = "creation_date")
+    private String creationDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "part_id")
-    private Participants participants;
-
     public Conversation() {
     }
 
-    public Conversation(String title, int creationDate, User user, Participants participants) {
+    public Conversation(String title, String creationDate, User user) {
         this.title = title;
         this.creationDate = creationDate;
         this.user = user;
-        this.participants = participants;
     }
 
     public int getConv_id() {
@@ -47,11 +46,11 @@ public class Conversation {
         this.title = title;
     }
 
-    public int getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(int creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -61,13 +60,5 @@ public class Conversation {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Participants getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(Participants participants) {
-        this.participants = participants;
     }
 }

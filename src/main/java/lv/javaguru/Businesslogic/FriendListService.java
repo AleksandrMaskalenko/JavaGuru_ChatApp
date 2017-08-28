@@ -5,8 +5,6 @@ import lv.javaguru.Domain.FriendList;
 import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -16,11 +14,6 @@ public class FriendListService {
     @Autowired
     private FriendListDAO friendListDAO;
 
-
-    public List<User> getFriendList(int id) {
-        return friendListDAO.loadFriends(id);
-    }
-
     public FriendList getFriend(int id) {
         return friendListDAO.findOne(id);
     }
@@ -28,5 +21,17 @@ public class FriendListService {
     public List<FriendList> getAllFriends() {
         return friendListDAO.findAll();
 
+    }
+
+    public void deleteFriend(int id) {
+        friendListDAO.delete(id);
+    }
+
+    public void addFried(FriendList friendList) {
+        friendListDAO.save(friendList);
+    }
+
+    public List<FriendList> getAllUserFriends(int id) {
+        return friendListDAO.findUserFriends(id);
     }
 }

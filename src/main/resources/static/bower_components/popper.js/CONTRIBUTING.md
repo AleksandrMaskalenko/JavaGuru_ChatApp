@@ -18,7 +18,7 @@ Then run `npm install` or `yarn` to install the needed dependencies.
 ## Adopt an issue
 
 All the issues, if not assigned to someone, can be adopted by anyone. Just make sure to comment on the issue to let know
-other users about your intention to work on it.  
+other user about your intention to work on it.  
 Also, remember to comment again in case you end up abandoning the issue.
 
 Each issue has a `DIFFICULTY` label to help you pick the one with the difficulty level adapt to you.  

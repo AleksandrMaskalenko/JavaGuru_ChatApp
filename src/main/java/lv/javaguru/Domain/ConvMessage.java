@@ -2,15 +2,22 @@ package lv.javaguru.Domain;
 
 import javax.persistence.*;
 
-
+@Entity
+@Table(name = "conv_message")
 public class ConvMessage {
+
     @Id
+    @Column(name = "message_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int message_id;
-    private String text;
-    private int date;
 
-    @OneToOne
+    @Column(name = "text")
+    private String text;
+
+    @Column(name = "date")
+    private String date;
+
+    @ManyToOne
     @JoinColumn(name = "conv_id")
     private Conversation conversation;
 
@@ -21,7 +28,7 @@ public class ConvMessage {
     public ConvMessage() {
     }
 
-    public ConvMessage(String text, int date, Conversation conversation, User user) {
+    public ConvMessage(String text, String date, Conversation conversation, User users) {
         this.text = text;
         this.date = date;
         this.conversation = conversation;
@@ -44,11 +51,11 @@ public class ConvMessage {
         this.text = text;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -417,14 +417,14 @@ Now, aborted transitions do not trigger the `defaultErrorHandler`
 
 > Why introduce a BC?
 
-Most users do not consider ABORT to be an error.  The default error
+Most user do not consider ABORT to be an error.  The default error
 handler should match this assumption.
 
 #### BC liklihood
 
 > How likely am I to be affected?
 
-Low: Most users do not consider ABORT to be an error. For most users
+Low: Most user do not consider ABORT to be an error. For most user
 this will not be a BC.
 
 #### BC severity
@@ -435,7 +435,7 @@ Low: Users who want to handle all transition rejections can
 register a `.onError` handler and filter/process accordingly.
 
 
-## **globals:** This change will likely only affect a small subset of typescript users and probably only those using `ui-router-ng2`.
+## **globals:** This change will likely only affect a small subset of typescript user and probably only those using `ui-router-ng2`.
 
 If you're injecting the `Globals` class somewhere, e.g.:
 ```
@@ -546,7 +546,7 @@ for more details
 The `$resolve` service's `.resolve()` method can be used to perform async dependency injection imperatively.
 
 The code has been moved out of the main angular-ui-router codebase and is now opt-in.
-For prebuilt bundle users, add `release/legacy/resolveService.js` to your project.
+For prebuilt bundle user, add `release/legacy/resolveService.js` to your project.
 For self-bundlers (e.g., webpack), add `angular-ui-router/lib/legacy/resolveService` as an `import` or `require()`.
 
 It's unlikely you use this service.
@@ -665,7 +665,7 @@ $state.go('foo').catch(err => { if (err.detail === "Error 123") .. });
 # BREAKING CHANGE: Replace `LocationServices.setUrl` with `LocationServices.url`
 
 This makes `url()` a getter/setter.  It also adds the optional `state` parameter to pass through to the browser history when using pushstate.
-End users should not notice this change, but plugin authors may.
+End user should not notice this change, but plugin authors may.
 # BREAKING CHANGE: Replace UrlRouterProvider/UrlRouter with just UrlRouter
 
 The configuration functions from the provider object have been integrated into the normal UrlRouter object.
@@ -781,7 +781,7 @@ myApp.config(function ($urlServiceProvider) {
 ```
 # BREAKING CHANGE: Move `html5Mode` and `hashPrefix` from `LocationServices` to `LocationConfig` interface
 
-### End users should not notice
+### End user should not notice
 
 # BREAKING CHANGE: move `ViewService.viewConfigFactory` and `rootContext`  to `_pluginapi.*`
 This BC happened in commit 6c42285
@@ -809,7 +809,7 @@ Instead, framework implementors should pass the `LocationServices` and `Location
 
 ### End Users
 
-End users who were accessing `services.location` or `services.locationConfig` should access these off the `UIRouter` instance instead.
+End user who were accessing `services.location` or `services.locationConfig` should access these off the `UIRouter` instance instead.
 
 
 
@@ -996,8 +996,8 @@ https://ui-router.github.io/new-ui-router-site/
 
 # BREAKING CHANGES
 
-These breaking changes are for users upgrading from a previous alpha, not from 0.x legacy series.
-This list is extensive, but typical users won't be affected by most of these changes.
+These breaking changes are for user upgrading from a previous alpha, not from 0.x legacy series.
+This list is extensive, but typical user won't be affected by most of these changes.
 
 The most common breaks will be #1 and #2
 

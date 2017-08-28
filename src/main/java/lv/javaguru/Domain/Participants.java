@@ -1,27 +1,30 @@
 package lv.javaguru.Domain;
 
 import javax.persistence.*;
-import java.util.List;
 
-
+@Entity
+@Table(name = "participants")
 public class Participants {
 
     @Id
+    @Column(name = "part_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int part_id;
 
-    @OneToOne(mappedBy = "participants")
+    @ManyToOne
+    @JoinColumn(name = "conv_id")
     private Conversation conversation;
 
-    @OneToMany(mappedBy = "participants")
-    private List<User> users;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Participants() {
     }
 
-    public Participants(Conversation conversation, List<User> users) {
+    public Participants(Conversation conversation, User user) {
         this.conversation = conversation;
-        this.users = users;
+        this.user = user;
     }
 
     public int getPart_id() {
@@ -40,11 +43,11 @@ public class Participants {
         this.conversation = conversation;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

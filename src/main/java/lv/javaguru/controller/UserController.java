@@ -29,7 +29,7 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @RequestMapping(value = "/find/{userName}")
+    @RequestMapping(value = "/find/{userName}", method = RequestMethod.GET)
     public List<User> findUser(@PathVariable String userName) {
         return userService.findUser(userName);
     }

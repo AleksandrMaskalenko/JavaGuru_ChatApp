@@ -1,6 +1,6 @@
+# DROP TABLE IF EXISTS friend_list;
+# DROP TABLE IF EXISTS conv_message;
 # DROP TABLE IF EXISTS participants;
-# DROP TABLE IF EXISTS convMessage;
 # DROP TABLE IF EXISTS conversation;
-# DROP TABLE IF EXISTS friendList;
-# DROP TABLE IF EXISTS user;
+# DROP TABLE IF EXISTS users;
 # DROP TABLE IF EXISTS role;

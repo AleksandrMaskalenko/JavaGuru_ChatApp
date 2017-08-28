@@ -2,10 +2,16 @@ package lv.javaguru.Businesslogic;
 
 import lv.javaguru.DAO.ConversationDAO;
 import lv.javaguru.DAO.ParticipantsDAO;
+import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.Conversation;
 import lv.javaguru.Domain.Participants;
+import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ConversationService {
@@ -14,20 +20,28 @@ public class ConversationService {
     private ConversationDAO conversationDAO;
 
     @Autowired
-    private ParticipantsDAO participantsDAO;
+    private ParticipantsService participantsService;
 
     public void createConversation(Conversation conversation) {
-        Participants participants = new Participants();
-        participantsDAO.save(participants);
-
         conversationDAO.save(conversation);
+        participantsService.createParticipatsGroup(conversation);
+
     }
 
     public void deleteConversation(int id) {
+        participantsService.deleteAllParticipants(id);
         conversationDAO.delete(id);
     }
 
-    public void findConversation(int id) {
-        conversationDAO.findConversation(id);
+    public List<Conversation> getUserConversations(int user_id) {
+        List<Conversation> conversationList = new ArrayList<Conversation>();
+
+        List<Participants> participantsList =  participantsService.getParticipatOfUserConver(user_id);
+
+        for (Participants part: participantsList) {
+            conversationList.add(conversationDAO.findOne(part.getConversation().getConv_id()));
+        }
+
+        return conversationList;
     }
 }

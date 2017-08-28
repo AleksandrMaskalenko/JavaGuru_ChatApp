@@ -1,28 +1,36 @@
 package lv.javaguru.Domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
-
 @Entity
+@Table(name = "users")
 public class User {
+
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int user_id;
+    private int id;
+
+    @Column(name = "password")
     private String password;
-    private int phone;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "user_name")
     private String userName;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
-
     public User() {
     }
 
-    public User(String password, int phone, String email, String userName, Role role) {
+    public User(String password, String phone, String email, String userName, Role role) {
         this.password = password;
         this.phone = phone;
         this.email = email;
@@ -30,38 +38,12 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (user_id != user.user_id) return false;
-        if (phone != user.phone) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
-        return role != null ? role.equals(user.role) : user.role == null;
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        int result = user_id;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + phone;
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        return result;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -72,11 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

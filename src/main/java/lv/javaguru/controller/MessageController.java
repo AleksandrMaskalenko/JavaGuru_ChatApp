@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/message")
 public class MessageController {
 
     @Autowired
     private ConvMessageService convMessageService;
 
-    @RequestMapping(value = "/message/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void saveMessage(@RequestBody ConvMessage convMessage) {
         convMessageService.saveMassage(convMessage);
     }
 
-    @RequestMapping(value = "/message/{id}")
-    public List<ConvMessage> getMessages(@PathVariable int id) {
-        return convMessageService.getMessages(id);
+    @RequestMapping(value = "/load/{conv_id}")
+    public List<ConvMessage> getMessages(@PathVariable int conv_id) {
+        return convMessageService.getMessages(conv_id);
     }
 }

@@ -14,9 +14,6 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
-    @Autowired
-    private RoleDAO roleDAO;
-
     public User getUserById(int id) {
         return userDAO.findOne(id);
     }
