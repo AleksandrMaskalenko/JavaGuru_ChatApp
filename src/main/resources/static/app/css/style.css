@@ -230,6 +230,19 @@ body {
   position: static;
   clear: both;
 }
+.wrapperrrr {
+  margin: 50px auto 50px;
+  width: 480px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-image: url("https://s15.postimg.org/y93u785cr/image.jpg");
+  background-size: cover;
+  background-repeat: none;
+ 
+}
+
 
 header {
   padding: 42px 49px 0;

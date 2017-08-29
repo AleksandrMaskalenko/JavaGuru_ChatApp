@@ -1,9 +1,25 @@
 <div class="wrapperrrr">
         <header>
-            <h1>Login</h1>
+            <h1>Register</h1>
         </header>
         <section>
             <div class="form">
+                <div class="input-item">
+                    <div class="label-part">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-part">
+                        <input type="text" autocomplete="off" id="name" value={{user.name}} />
+                    </div>
+                </div>
+                <div class="input-item">
+                    <div class="label-part">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-part">
+                        <input type="text" autocomplete="off" id="email"  value={{user.email}} />
+                    </div> 
+                </div>
                 <div class="input-item">
                     <div class="label-part">
                         <label for="username">Username</label>
@@ -21,10 +37,11 @@
                         <span>Minimum 6 characters</span>
                     </div>
                 </div>
+                
             </div>
         </section>
         <footer>
-            <a href="javascript:;" class="cancel"> Login</a>
-            <a data-ui-sref="register" class="save">Register </a>
+            <a href="javascript:;" class="cancel">Cancel</a>
+            <a href="javascript:;" class="save">Save </a>
         </footer>
 </div>

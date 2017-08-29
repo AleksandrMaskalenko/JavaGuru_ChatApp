@@ -10,7 +10,6 @@ angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
             }
         }
     }).state('login', {
-        parent : 'nav',
         url : '/login',
         views : {
             'content@' : {
@@ -51,6 +50,14 @@ angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
         views : {
             'content@' : {
                 templateUrl : 'app/views/find-friend.html',
+                controller : 'NavController'
+            }
+        }
+    }).state('register', {
+        url : '/register',
+        views : {
+            'content@' : {
+                templateUrl : 'app/views/register.html',
                 controller : 'NavController'
             }
         }
