@@ -1,15 +1,17 @@
 package lv.javaguru.Businesslogic;
 
-import lv.javaguru.DAO.RoleDAO;
 import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserDAO userDAO;
@@ -26,7 +28,10 @@ public class UserService {
         userDAO.delete(id);
     }
 
-    public List<User> findUser(String userName) {return userDAO.findUserByName(userName);}
+    public List<User> findUser(String username) {return userDAO.findUserByName(username);}
 
-   // public List<User> createUser { User user = new User()}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userDAO.findOneByUsername(username);
+    }
 }

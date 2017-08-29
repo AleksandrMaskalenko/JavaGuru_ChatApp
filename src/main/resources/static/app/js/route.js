@@ -1,5 +1,5 @@
 angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/chat');
+    $urlRouterProvider.otherwise('/login');
     $stateProvider.state('nav', {
         abstract : true,
         url : '',

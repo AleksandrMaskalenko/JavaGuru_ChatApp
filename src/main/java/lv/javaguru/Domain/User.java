@@ -1,10 +1,17 @@
 package lv.javaguru.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @Column(name = "user_id")
@@ -20,8 +27,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "username")
+    private String username;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -30,11 +37,11 @@ public class User {
     public User() {
     }
 
-    public User(String password, String phone, String email, String userName, Role role) {
+    public User(String password, String phone, String email, String username, Role role) {
         this.password = password;
         this.phone = phone;
         this.email = email;
-        this.userName = userName;
+        this.username = username;
         this.role = role;
     }
 
@@ -70,12 +77,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Role getRole() {
@@ -84,5 +91,37 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+//        authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        return authorities;
     }
 }
