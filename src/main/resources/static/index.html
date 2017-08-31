@@ -1,56 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Chat</title>
+	<title>Song library</title>
 
-    <link rel="stylesheet" href="app/css/style.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="app/css/style-chat.css">
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/popper.js/dist/popper.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="app/js/services/scroll.js"></script>
-    <script src="app/js/app.js"></script>
-    <script src="app/js/route.js"></script>
-    <script src="app/js/services/chat-service.js"></script>
-    <script src="app/js/services/auth-service.js"></script>
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="./node_modules/angular/angular.min.js"></script>
+	<script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="app/js/app.js"></script>
+	<script src="app/js/route.js"></script>
+	<script src="app/js/services/auth-service.js"></script>
+	<script src="app/js/controllers/nav.js"></script>
+	<script src="app/js/controllers/login.js"></script>
+	<script src="app/js/controllers/register.js"></script>
+	<script src="app/js/controllers/page-not-found.js"></script>
+	<script src="app/js/controllers/webchat.js"></script>
+</head>
 
-    <script src="app/js/controllers/login.js"></script>
-    <script src="app/js/controllers/nav.js"></script>
-    <!--<script src="app/js/controllers/user-config.js"></script>-->
-    <!--<script src="app/js/controllers/chat.js"></script>-->
+<div class="row hat">
+	<div class="large-12 columns">
+		<ul class="log-in right">
+			<li data-ng-show="user.principal.username">Hi, {{user.principal.username}}</li>
+			<li data-ng-show="!user.principal.username"><a data-ui-sref="login">Sign In</a></li>
+			<li data-ng-show="!user.principal.username"><a data-ui-sref="register">Register</a></li>
+			<li><a data-ui-sref="home">Home</a></li>
+			<li data-ng-show="user.principal.username"><a data-ng-click="logout()">Logout</a></li>
+		</ul>
+	</div>
+</div>
 
-</head> 
-    
-    <div class="row hat">
-        <div class="large-12 columns">
-            <ul class="log-in right">
-                <li>
-                    <a data-ui-sref="login">Sign In</a>
-                </li>
-                <li>
-                    <a data-ui-sref="register">Register</a>
-                </li>
-                <li><a href="#">Logout</a></li>
-                <li><a href="#">Home</a></li>
+	<body data-ng-app="myApp">
 
-            </ul>
-        </div>
-    </div>
-    
-    <body data-ng-app="myApp">
+		<div data-ui-view="nav" ></div>
 
-        <div data-ui-view="nav" ></div>
+		<div class="container" >
+			<div data-ui-view="content"></div>
+		</div>
 
-        <div class="container" >
-            <div data-ui-view="content"></div>
-        </div>
+	</body>
 
-    </body>
 </html>

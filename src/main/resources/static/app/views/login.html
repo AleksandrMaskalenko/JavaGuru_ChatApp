@@ -1,30 +1,34 @@
 <div class="wrapperrrr">
-        <header>
-            <h1>Login</h1>
-        </header>
-        <section>
-            <div class="form">
-                <div class="input-item">
-                    <div class="label-part">
-                        <label for="username">Username</label>
-                    </div>
-                    <div class="input-part">
-                        <input type="text" autocomplete="off" id="username" value={{user.username}} />
-                    </div>
-                </div>
-                <div class="input-item password">
-                    <div class="label-part">
-                        <label for="password">Password</label>
-                    </div>
-                    <div class="input-part">
-                        <input type="password" id="password" value={{user.password}} />
-                        <span>Minimum 6 characters</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <footer>
-            <a href="javascript:;" class="cancel"> Login</a>
-            <a data-ui-sref="register" class="save">Register </a>
-        </footer>
+	<header>
+		<h1>Login</h1>
+	</header>
+    <form data-ng-submit="login()" id="logi">
+	<section>
+			<div class="form">
+				<div class="input-item">
+					<div class="label-part">
+						<label for="username">Username</label>
+					</div>
+					<div class="input-part">
+						<input type="text" autocomplete="off" id="username" data-ng-model="username" />
+					</div>
+				</div>
+				<div class="input-item password">
+					<div class="label-part">
+						<label for="password">Password</label>
+					</div>
+					<div class="input-part">
+						<input type="password" id="password" data-ng-model="password" />
+						<span>Minimum 6 characters</span>
+					</div>
+				</div>
+			</div>
+	</section>
+	<footer>
+		<button form="logi" class="btn-linkk "> Login</button>
+
+		<button data-ui-sref="register" class="btn-linkk float-right">Register</button>
+		<div class="alert alert-info margin-top-5" data-ng-show="message">{{message}}</div>
+	</footer>
+        </form>
 </div>

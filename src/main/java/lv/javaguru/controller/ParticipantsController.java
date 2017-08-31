@@ -2,7 +2,6 @@ package lv.javaguru.controller;
 
 import lv.javaguru.Businesslogic.ParticipantsService;
 import lv.javaguru.Domain.Participants;
-import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

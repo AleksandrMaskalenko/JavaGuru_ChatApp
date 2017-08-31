@@ -3,7 +3,6 @@ package lv.javaguru.Businesslogic;
 
 import lv.javaguru.api.Error;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +14,7 @@ public interface AddUserValidator {
 
     boolean alreadyExist(String userName);
 
-    Optional<Error> validateEmail (String email);
+    Optional<Error> validateEmail(String email);
 
 }
 

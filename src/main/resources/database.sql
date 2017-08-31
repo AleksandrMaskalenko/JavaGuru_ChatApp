@@ -13,9 +13,9 @@
 #
 # CREATE TABLE users (
 #   user_id INT                 NOT NULL  AUTO_INCREMENT PRIMARY KEY,
-#   username VARCHAR(255)      NOT NULL,
+#   username VARCHAR(255)       NOT NULL,
 #   password VARCHAR(255)       NOT NULL,
-#   phone VARCHAR(255)          NOT NULL,
+#   phone VARCHAR(255)          ,
 #   email VARCHAR(255)          NOT NULL,
 #   role_id INT                 NOT NULL,
 #
@@ -38,6 +38,7 @@
 #   title VARCHAR(255)          NOT NULL,
 #   creation_date VARCHAR(255)  NOT NULL,
 #   user_id INT                 NOT NULL,
+#   conv_type VARCHAR(255)      NOT NULL,
 #
 #   FOREIGN KEY (user_id)       REFERENCES users(user_id)
 # )
@@ -85,13 +86,13 @@
 # INSERT INTO friend_list VALUES (6, 3, 6);
 # INSERT INTO friend_list VALUES (7, 2, 4);
 #
-# INSERT INTO conversation VALUES (1,'Weather', 1001, 1);
-# INSERT INTO conversation VALUES (2,'Work', 1002, 1);
-# INSERT INTO conversation VALUES (3, 'Quadcopter', 1003, 2);
+# INSERT INTO conversation VALUES (1,'Weather', 1001, 1, 'group');
+# INSERT INTO conversation VALUES (2,'Andrej', 1002, 1, 'pair');
+# INSERT INTO conversation VALUES (3, 'Quadcopter', 1003, 2, 'group');
 #
 # INSERT INTO participants VALUES (1, 1, 1);
 # INSERT INTO participants VALUES (2, 1, 2);
-# INSERT INTO participants VALUES (3, 2, 1);
+# INSERT INTO participants VALUES (3, 2, 6);
 # INSERT INTO participants VALUES (4, 3, 6);
 # INSERT INTO participants VALUES (5, 3, 5);
 # INSERT INTO participants VALUES (6, 3, 4);

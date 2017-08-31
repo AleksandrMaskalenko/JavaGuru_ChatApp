@@ -1,6 +1,9 @@
 package lv.javaguru.Businesslogic;
 
+import lv.javaguru.DAO.FriendListDAO;
+import lv.javaguru.DAO.RoleDAO;
 import lv.javaguru.DAO.UserDAO;
+import lv.javaguru.Domain.FriendList;
 import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,16 +19,24 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private RoleDAO roleDAO;
+
+    @Autowired
+    private FriendListDAO friendListDAO;
+
     public User getUserById(int id) {
         return userDAO.findOne(id);
     }
 
     public void saveUser(User user) {
+        user.setRole(roleDAO.findOne(2));
         userDAO.save(user);
     }
 
     public void deleteUser(int id) {
-        userDAO.delete(id);
+
+
     }
 
     public List<User> findUser(String username) {return userDAO.findUserByName(username);}

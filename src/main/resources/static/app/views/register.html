@@ -1,47 +1,52 @@
 <div class="wrapperrrr">
-        <header>
-            <h1>Register</h1>
-        </header>
-        <section>
-            <div class="form">
-                <div class="input-item">
-                    <div class="label-part">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="input-part">
-                        <input type="text" autocomplete="off" id="name" value={{user.name}} />
-                    </div>
-                </div>
-                <div class="input-item">
-                    <div class="label-part">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="input-part">
-                        <input type="text" autocomplete="off" id="email"  value={{user.email}} />
-                    </div> 
-                </div>
-                <div class="input-item">
-                    <div class="label-part">
-                        <label for="username">Username</label>
-                    </div>
-                    <div class="input-part">
-                        <input type="text" autocomplete="off" id="username" value={{user.username}} />
-                    </div>
-                </div>
-                <div class="input-item password">
-                    <div class="label-part">
-                        <label for="password">Password</label>
-                    </div>
-                    <div class="input-part">
-                        <input type="password" id="password" value={{user.password}} />
-                        <span>Minimum 6 characters</span>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-        <footer>
-            <a href="javascript:;" class="cancel">Cancel</a>
-            <a href="javascript:;" class="save">Save </a>
-        </footer>
+
+	<header>
+		<h1>Register</h1>
+	</header>
+	<form data-ng-submit="submit()" id="register">
+	<section>
+		<div class="form">
+			<div class="input-item">
+				<div class="label-part">
+					<label for="name">Name</label>
+				</div>
+				<div class="input-part">
+					<input type="text" autocomplete="off" id="name" data-ng-model="user.name" />
+				</div>
+			</div>
+			<div class="input-item">
+				<div class="label-part">
+					<label for="email">Email</label>
+				</div>
+				<div class="input-part">
+					<input type="text" autocomplete="off" id="email"  data-ng-model="user.email" />
+				</div>
+			</div>
+			<div class="input-item">
+				<div class="label-part">
+					<label for="username">Username</label>
+				</div>
+				<div class="input-part">
+					<input type="text" autocomplete="off" id="username" data-ng-model="user.username" />
+				</div>
+			</div>
+			<div class="input-item password">
+				<div class="label-part">
+					<label for="password">Password</label>
+				</div>
+				<div class="input-part">
+					<input type="password" id="password" data-ng-model="user.password" />
+					<span>Minimum 6 characters</span>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<footer>
+		<button data-ui-sref="login" class="btn-linkk">Cancel</button>
+		<button  form="register" class="btn-linkk float-right">save</button>
+		<div class="alert alert-info margin-top-5" data-ng-show="message">{{message}}</div>
+	</footer>
+	</form>
+
 </div>

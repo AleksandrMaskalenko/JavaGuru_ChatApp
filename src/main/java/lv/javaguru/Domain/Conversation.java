@@ -17,6 +17,9 @@ public class Conversation {
     @Column(name = "creation_date")
     private String creationDate;
 
+    @Column(name = "conv_type")
+    private String convType;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -24,9 +27,10 @@ public class Conversation {
     public Conversation() {
     }
 
-    public Conversation(String title, String creationDate, User user) {
+    public Conversation(String title, String creationDate, String convType, User user) {
         this.title = title;
         this.creationDate = creationDate;
+        this.convType = convType;
         this.user = user;
     }
 
@@ -52,6 +56,14 @@ public class Conversation {
 
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getConvType() {
+        return convType;
+    }
+
+    public void setConvType(String convType) {
+        this.convType = convType;
     }
 
     public User getUser() {

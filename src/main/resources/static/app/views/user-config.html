@@ -2,6 +2,7 @@
     <div class="container">
         <header>
             <h1>Settings</h1>
+            <div class="alert alert-info margin-top-5 col-sm-3 message" data-ng-show="message">{{message}}</div>
         </header>
         <section>
             <div class="form">
@@ -10,7 +11,7 @@
                         <label for="name">Name</label>
                     </div>
                     <div class="input-part">
-                        <input type="text" autocomplete="off" id="name" value={{user.name}} />
+                        <input type="text" autocomplete="off" id="name" data-ng-model="name" />
                     </div>
                 </div>
                 <div class="input-item">
@@ -18,7 +19,7 @@
                         <label for="email">Email</label>
                     </div>
                     <div class="input-part">
-                        <input type="text" autocomplete="off" id="email"  value={{user.email}} />
+                        <input type="text" autocomplete="off" id="email"  data-ng-model="email" />
                     </div> 
                 </div>
                 <div class="input-item">
@@ -26,7 +27,7 @@
                         <label for="username">Username</label>
                     </div>
                     <div class="input-part">
-                        <input type="text" autocomplete="off" id="username" value={{user.username}} />
+                        <input type="text" autocomplete="off" id="username" data-ng-model="username" />
                     </div>
                 </div>
                 <div class="input-item password">
@@ -34,11 +35,13 @@
                         <label for="password">Password</label>
                     </div>
                     <div class="input-part">
-                        <input type="password" id="password" value={{user.password}} />
+                        <input type="password" id="password" data-ng-model="password" />
                         <span>Minimum 6 characters</span>
                     </div>
                 </div> 
             </div>
+
+
             <div class="change-image">
                 <div class="profile-img-container">
                     <a href="javascript:;">Add image</a>
@@ -49,13 +52,15 @@
                     <a href="javascript:;" class="rotate"><img src="https://s10.postimg.org/ywimyp3ad/rotate.png" alt="" /></a>
                 </div>
             </div>
+
+
         </section>
         <footer>
-            <a href="javascript:;" class="cancel"> Cancel</a>
-        <a href="javascript:;" class="save">Save </a>
+            <a data-ui-sref="home" class="cancel">Cancel</a>
+            <button data-ng-click="updateUser()" class="btn-linkk float-right">Save</button>
         </footer>
         <footer class="delete">
-            <a href="javascript:;" class="delete">Delete account</a>
+            <a data-ui-sref="login" data-ng-click="deleteUser()" class="delete">Delete account</a>
         </footer>
         
        

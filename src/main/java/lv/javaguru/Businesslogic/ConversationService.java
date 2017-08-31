@@ -1,14 +1,10 @@
 package lv.javaguru.Businesslogic;
 
 import lv.javaguru.DAO.ConversationDAO;
-import lv.javaguru.DAO.ParticipantsDAO;
-import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.Conversation;
 import lv.javaguru.Domain.Participants;
-import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;

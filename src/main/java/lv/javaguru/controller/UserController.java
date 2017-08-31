@@ -25,7 +25,7 @@ public class UserController {
         userService.saveUser(user);
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/delete/{id}",  method = RequestMethod.POST)
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }
@@ -39,6 +39,4 @@ public class UserController {
     public Principal user(Principal principal) {
         return principal;
     }
-
-
 }

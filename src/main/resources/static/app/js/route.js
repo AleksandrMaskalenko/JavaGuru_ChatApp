@@ -1,38 +1,46 @@
 angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/login');
-    $stateProvider.state('nav', {
-        abstract : true,
-        url : '',
-        views : {
-            'nav@' : {
-                templateUrl : 'app/views/nav.html',
-                controller : 'NavController'
-            }
-        }
-    }).state('login', {
-        url : '/login',
+	$urlRouterProvider.otherwise('/page-not-found');
+	$stateProvider.state('nav', {
+		abstract : true,
+		url : '',
+		views : {
+			'nav@' : {
+				templateUrl : 'app/views/nav.html',
+				controller : 'NavController'
+			}
+		}
+	}).state('login', {
+		url : '/login',
+		views : {
+			'content@' : {
+				templateUrl : 'app/views/login.html',
+				controller : 'LoginController'
+			}
+		}
+	}).state('page-not-found', {
+        parent : 'nav',
+        url : '/page-not-found',
         views : {
             'content@' : {
-                templateUrl : 'app/views/login.html',
-                controller : 'NavController'
+                templateUrl : 'app/views/page-not-found.html',
+                controller : 'PageNotFoundController'
             }
         }
-    }).state('chat', {
+    }).state('register', {
+        url : '/register',
+        views : {
+            'content@' : {
+                templateUrl : 'app/views/register.html',
+                controller : 'RegisterController'
+            }
+        }
+    }).state('home', {
         parent : 'nav',
-        url : '/chat',
+        url : '/',
         views : {
             'content@' : {
                 templateUrl : 'app/views/chat.html',
-                controller : 'NavController'
-            }
-        }
-    }).state('user', {
-        parent : 'nav',
-        url : '/user',
-        views : {
-            'content@' : {
-                templateUrl : 'app/views/user-config.html',
-                controller : 'NavController'
+                controller : 'WebChatController'
             }
         }
     }).state('friends', {
@@ -41,7 +49,7 @@ angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
         views : {
             'content@' : {
                 templateUrl : 'app/views/friends.html',
-                controller : 'NavController'
+                controller : 'WebChatController'
             }
         }
     }).state('find', {
@@ -50,15 +58,16 @@ angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
         views : {
             'content@' : {
                 templateUrl : 'app/views/find-friend.html',
-                controller : 'NavController'
+                controller : 'WebChatController'
             }
         }
-    }).state('register', {
-        url : '/register',
+    }).state('user', {
+        parent : 'nav',
+        url : '/user',
         views : {
             'content@' : {
-                templateUrl : 'app/views/register.html',
-                controller : 'NavController'
+                templateUrl : 'app/views/user-config.html',
+                controller : 'WebChatController'
             }
         }
     });

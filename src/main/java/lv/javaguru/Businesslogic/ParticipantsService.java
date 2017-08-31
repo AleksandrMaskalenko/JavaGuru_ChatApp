@@ -5,6 +5,7 @@ import lv.javaguru.DAO.ParticipantsDAO;
 import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.Conversation;
 import lv.javaguru.Domain.Participants;
+import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +25,17 @@ public class ParticipantsService {
 
     public void createParticipatsGroup(Conversation conversation) {
 
+        User user1 = userDAO.findOne(conversation.getUser().getId());
+        particip(conversation, user1);
+
+        User user2 = userDAO.findOneByUsername(conversation.getTitle());
+        particip(conversation, user2);
+    }
+
+    private void particip (Conversation conversation, User user) {
         Participants participants = new Participants();
         participants.setConversation(conversationDAO.findOneByConvTitle(conversation.getTitle()));
-        participants.setUser(userDAO.findOne(conversation.getUser().getId()));
-
+        participants.setUser(user);
         participantsDAO.save(participants);
 
     }

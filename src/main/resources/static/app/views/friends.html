@@ -5,30 +5,16 @@
 
     <div>
         <table class="table">
-            <thead class="thead-default">
-            <tr>
-                <th>Icon</th>
-                <th>Name</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-            </tr>
-            </thead>
- 
             <tbody>
             <tr data-ng-repeat="friend in friends" >
 
-                <td>{{friend.icon}}</td>
-                <td>{{friend.name}}</td>
-                <td>
-                    <a data-ng-click="Write(friend)" class="btn btn-info btn-sm" role="button">Write message!</a>
-                </td>
-
-                <td>
-                    <a data-ng-click="Delete(friend)" class="btn btn-info btn-sm" role="button">Delete friend</a>
-                </td>
+                <td class="text-light">{{friend.user.icon}}</td>
+                <td class="text-light">{{friend.user.username}}</td>
+                <td><button data-ng-click="write(friend)" class="btn btn-secondary btn-sm">Write message!</button></td>
+                <td><button data-ng-click="delete(friend)" class="btn btn-secondary btn-sm">Delete friend</button></td>
             </tr>
             </tbody>
         </table>
     </div>
     </div>
-<div class="wrapper">
+</div>

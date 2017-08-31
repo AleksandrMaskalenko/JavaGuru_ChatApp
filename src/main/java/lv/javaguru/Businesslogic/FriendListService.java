@@ -1,11 +1,15 @@
 package lv.javaguru.Businesslogic;
 
 import lv.javaguru.DAO.FriendListDAO;
+import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.FriendList;
 import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,6 +17,9 @@ public class FriendListService {
 
     @Autowired
     private FriendListDAO friendListDAO;
+
+    @Autowired
+    private UserDAO userDAO;
 
     public FriendList getFriend(int id) {
         return friendListDAO.findOne(id);
@@ -27,7 +34,15 @@ public class FriendListService {
         friendListDAO.delete(id);
     }
 
-    public void addFried(FriendList friendList) {
+    public void addFried(int id) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String loggedUsername = auth.getName();
+        User user = userDAO.findOneByUsername(loggedUsername);
+
+        FriendList friendList = new FriendList();
+        friendList.setMainUser_id(user.getId());
+        friendList.setUser(userDAO.findOne(id));
         friendListDAO.save(friendList);
     }
 

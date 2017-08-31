@@ -2,7 +2,6 @@ package lv.javaguru.controller;
 
 import lv.javaguru.Businesslogic.FriendListService;
 import lv.javaguru.Domain.FriendList;
-import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,19 +24,13 @@ public class FriendsController {
         friendListService.deleteFriend(id);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void addFriend(@RequestBody FriendList friendList) {
-        friendListService.addFried(friendList);
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
+    public void addFriend(@PathVariable int id) {
+        friendListService.addFried(id);
     }
 
     @RequestMapping(value = "/userfriends/{id}")
     public List<FriendList> getAllUserFriends(@PathVariable int id) {
         return friendListService.getAllUserFriends(id);
-    }
-
-
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<FriendList> getAllFriends() {
-        return friendListService.getAllFriends();
     }
 }
