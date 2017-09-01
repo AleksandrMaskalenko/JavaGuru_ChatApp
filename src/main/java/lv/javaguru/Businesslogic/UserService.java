@@ -6,6 +6,8 @@ import lv.javaguru.DAO.UserDAO;
 import lv.javaguru.Domain.FriendList;
 import lv.javaguru.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -44,5 +46,12 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDAO.findOneByUsername(username);
+    }
+
+    public User authentication() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String loggedUsername = auth.getName();
+        return userDAO.findOneByUsername(loggedUsername);
     }
 }

@@ -13,9 +13,12 @@ public class ConvMessageService {
     @Autowired
     private ConvMessageDAO convMessageDAO;
 
-    public void saveMassage(ConvMessage convMessage) {
-        convMessageDAO.save(convMessage);
+    @Autowired
+    private UserService userService;
 
+    public void saveMassage(ConvMessage convMessage) {
+        convMessage.setUser(userService.authentication());
+        convMessageDAO.save(convMessage);
     }
 
     public List<ConvMessage> getMessages(int conv_id) {

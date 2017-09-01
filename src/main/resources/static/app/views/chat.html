@@ -1,25 +1,45 @@
 <div class="wrapper">
     <div class="container">
         <div class="ui">
-            <div class="left-menu">
-                <div>
-                    <table class="table">
-                        <tbody>
-                        <tr data-ng-repeat="conversation in conversations" >
-
-                            <td class="text-light">{{conversation.title}}</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
- 
-
+            
+            <div class="left-menu"> 
+                <div data-ng-repeat="conversation in conversations" class="text-conv">
+                    <a data-ng-click="loadChat(conversation)" >{{conversation.title}}</a>
+                </div>   
+                
+                
             </div>
             
-            <div class="message-box">
-                <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
-                <button type="submit" class="message-submit">Send</button>
+            <div class="group-chat">
+                    <button><i class="fa fa-users"></i></button>
+            </div>
+            
+            <div class="float-right">
+                <div class="conversation-title">
+                    {{convtitle}}
+                </div>
+
+                <div class="conversation-actions">
+                    <button><i class="fa fa-trash-o"></i></button>
+                    <button><i class="fa fa-sign-out"></i></button>
+                    <button><i class="fa fa-user-plus"></i></button>
+                    
+                </div>
+
+                <div  id="cont-mess">
+
+                        <div ng-repeat="message in messages" class="{{message.from}}">
+                            <p>{{message.text}}</p>
+                        </div>
+
+                </div>
+
+
+
+                <form class="message-box">
+                    <textarea type="text" class="message-input" placeholder="Type message..." data-ng-model="text"></textarea>
+                    <button type="submit" class="message-submit" data-ng-click="messageInput()">Send</button>
+                </form>
             </div>
         </div>
     </div>

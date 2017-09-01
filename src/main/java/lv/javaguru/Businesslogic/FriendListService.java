@@ -21,6 +21,9 @@ public class FriendListService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private UserService userService;
+
     public FriendList getFriend(int id) {
         return friendListDAO.findOne(id);
     }
@@ -35,10 +38,7 @@ public class FriendListService {
     }
 
     public void addFried(int id) {
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String loggedUsername = auth.getName();
-        User user = userDAO.findOneByUsername(loggedUsername);
+        User user = userService.authentication();
 
         FriendList friendList = new FriendList();
         friendList.setMainUser_id(user.getId());

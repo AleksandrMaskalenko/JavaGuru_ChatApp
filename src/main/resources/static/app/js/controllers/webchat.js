@@ -57,10 +57,12 @@ angular.module('myApp')
         $http.post('http://localhost:8080/user/delete/' + $scope.user.principal.id);
     };
 
-    $scope.name = $scope.user.principal.username;
-    $scope.email = $scope.user.principal.email;
-    $scope.username = $scope.user.principal.username;
-    $scope.password = $scope.user.principal.password;
+    $rootScope.loadUserData = function () {
+        $rootScope.name = $scope.user.principal.name;
+        $rootScope.email = $scope.user.principal.email;
+        $rootScope.username = $scope.user.principal.username;
+        $rootScope.password = $scope.user.principal.password;
+    };
 
     $scope.updateUser = function () {
         var userObjUpd = {
@@ -81,12 +83,15 @@ angular.module('myApp')
         });
     };
 
-    // $rootScope.convers();
-    // $rootScope.convers = function () {
+
+
+    $rootScope.convers = function () {
         $http.get('http://localhost:8080/conversation/userconv/' + $scope.user.principal.id).then(function (response) {
             $rootScope.conversations = response.data;
         });
-    // };
+    };
+
+    $rootScope.convers();
 
     $scope.write = function (friend) {
         var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
@@ -99,9 +104,71 @@ angular.module('myApp')
         };
 
         $http.post('http://localhost:8080/conversation/create', convObj).success(function () {
+            $rootScope.convers();
+        });
+    };
 
+    var messages_array = [];
+
+    $scope.loadChat = function (conversation) {
+        messages_array = [];
+
+        convers = conversation;
+
+        $rootScope.convtitle = conversation.title;
+
+        function compare(a,b) {
+            if (a.date < b.date)
+                return -1;
+            if (a.date > b.date)
+                return 1;
+            return 0;
+        }
+        
+        var messFrom = function (id) {
+            if (id === $scope.user.principal.id) {
+               return 'message-remote'
+            } else {
+                return 'message-local'
+            }
+        };
+
+        $http.get('http://localhost:8080/message/load/' + conversation.conv_id).then(function (response) {
+
+            for (let message of response.data) {
+                var newMessageObj = {
+                    text: message.text,
+                    date: message.date,
+                    userName: message.user.username,
+                    from: messFrom(message.user.id)
+                };
+                messages_array.push(newMessageObj);
+            }
+            $scope.messages = messages_array.sort(compare);
+        });
+
+    };
+
+    $scope.messageInput = function () {
+        var convMessObj = {
+            text: $scope.text,
+            date: Date.now(),
+            conversation: convers
+        };
+
+        $http.post('http://localhost:8080/message/save', convMessObj).success(function () {
+            var newMessageObj = {
+                text: convMessObj.text,
+                date: convMessObj.date,
+                userName: $scope.user.principal.username,
+                from: 'message-remote'
+            };
+            messages_array.push(newMessageObj);
+            $scope.text = null;
 
         });
-    }
+
+    };
+
 
 });

@@ -10,8 +10,8 @@
 
                 <td class="text-light">{{friend.user.icon}}</td>
                 <td class="text-light">{{friend.user.username}}</td>
-                <td><button data-ng-click="write(friend)" class="btn btn-secondary btn-sm">Write message!</button></td>
-                <td><button data-ng-click="delete(friend)" class="btn btn-secondary btn-sm">Delete friend</button></td>
+                <td><button data-ng-click="write(friend)" data-ui-sref="home"><i class="fa fa-commenting-o"></i></button></td>
+                <td><button data-ng-click="delete(friend)"><i class="fa fa-trash-o"></i></button></td>
             </tr>
             </tbody>
         </table>

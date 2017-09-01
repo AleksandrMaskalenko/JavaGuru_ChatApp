@@ -15,7 +15,7 @@ public class ConvMessage {
     private String text;
 
     @Column(name = "date")
-    private String date;
+    private long date;
 
     @ManyToOne
     @JoinColumn(name = "conv_id")
@@ -28,7 +28,7 @@ public class ConvMessage {
     public ConvMessage() {
     }
 
-    public ConvMessage(String text, String date, Conversation conversation, User users) {
+    public ConvMessage(String text, long date, Conversation conversation, User user) {
         this.text = text;
         this.date = date;
         this.conversation = conversation;
@@ -51,11 +51,11 @@ public class ConvMessage {
         this.text = text;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

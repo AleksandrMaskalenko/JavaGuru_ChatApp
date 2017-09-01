@@ -20,8 +20,8 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "email")
     private String email;
@@ -36,9 +36,9 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String password, String phone, String email, String username, Role role) {
+    public User(String password, String name, String email, String username, Role role) {
         this.password = password;
-        this.phone = phone;
+        this.name = name;
         this.email = email;
         this.username = username;
         this.role = role;
@@ -52,6 +52,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -60,12 +61,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getName() {
+        return name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -76,6 +77,7 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
