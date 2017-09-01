@@ -2,6 +2,7 @@ package lv.javaguru.controller;
 
 import lv.javaguru.Businesslogic.UserService;
 import lv.javaguru.Domain.User;
+//import lv.javaguru.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+//    @Autowired
+//    private UserValidator userValidator;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable int id) {
