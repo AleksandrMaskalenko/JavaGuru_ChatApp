@@ -24,4 +24,8 @@ public class ConvMessageService {
     public List<ConvMessage> getMessages(int conv_id) {
         return convMessageDAO.getMessages(conv_id);
     }
+
+    public void deleteAllMessages(int conv_id) {
+        convMessageDAO.deleteAllByConvId(conv_id);
+    }
 }

@@ -23,13 +23,19 @@ public class ParticipantsService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private UserService userService;
+
     public void createParticipatsGroup(Conversation conversation) {
 
         User user1 = userDAO.findOne(conversation.getUser().getId());
         particip(conversation, user1);
 
-        User user2 = userDAO.findOneByUsername(conversation.getTitle());
-        particip(conversation, user2);
+        if (conversation.getConvType() == "pair") {
+            User user2 = userDAO.findOneByUsername(conversation.getTitle());
+            particip(conversation, user2);
+        }
+
     }
 
     private void particip (Conversation conversation, User user) {
@@ -60,5 +66,17 @@ public class ParticipantsService {
 
     public List<Participants> loadParticipantsOfConv(int conv_id) {
         return participantsDAO.loadParticipantsOfConv(conv_id);
+    }
+
+    public void deletParticipByUserId(int conv_id) {
+        User user = userService.authentication();
+
+        List<Participants> partList = participantsDAO.loadParticipantsOfConv(conv_id);
+        for (Participants partip : partList) {
+            if (partip.getUser().getId() == user.getId()) {
+                participantsDAO.delete(partip.getPart_id());
+            }
+        }
+
     }
 }

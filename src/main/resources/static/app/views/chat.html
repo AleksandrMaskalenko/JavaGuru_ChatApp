@@ -11,34 +11,56 @@
             </div>
             
             <div class="group-chat">
-                    <button><i class="fa fa-users"></i></button>
+                <button data-ng-click="addGroupChatForm()"><i class="fa fa-users"></i></button>
+
+                <div class="group-form">
+                    <form data-ng-show="groupChatForm" class="input-group">
+                        <input class="form-control" placeholder="Title" data-ng-model="addGroupTitle">
+                        <span class="input-group-btn">
+            			<a class="btn btn-secondary btn-sm" type="button" data-ng-click="addGroupChat()"><i class="fa fa-floppy-o"></i></a>
+        			</span>
+                    </form>
+                </div>
             </div>
+
+
             
             <div class="float-right">
-                <div class="conversation-title">
-                    {{convtitle}}
-                </div>
+                <div class="conversation-title">{{convtitle}}</div>
 
                 <div class="conversation-actions">
-                    <button><i class="fa fa-trash-o"></i></button>
-                    <button><i class="fa fa-sign-out"></i></button>
-                    <button><i class="fa fa-user-plus"></i></button>
-                    
+                    <button data-ng-show="particip" data-ng-click="showParticipants()">Participants</button>
+                    <button data-ng-show="trash" data-ng-click="deleteGroup()"><i class="fa fa-trash-o"></i></button>
+                    <button data-ng-show="sing_out" data-ng-click="singOut()"><i class="fa fa-sign-out"></i></button>
+                    <button data-ng-show="addUser" data-ng-click="addUserAction()"><i class="fa fa-user-plus"></i></button>
                 </div>
+
+                <div data-ng-show="participForm" class="participants" >
+                    <div data-ng-repeat="participant in participants">
+                        {{participant.user.username}}
+                        <i data-ng-click="deleteU(participant)" class="fa fa-minus-square-o"></i>
+                    </div>
+                </div>
+
+
+                    <div data-ng-show="addUserForm" class="addUserForm">
+                        <div data-ng-repeat="friend in friends">
+                            {{friend.user.username}}
+                            <i data-ng-click="addU(friend.user)" class="fa fa-plus-square-o"></i>
+                        </div>
+                    </div>
+
 
                 <div  id="cont-mess">
-
-                        <div ng-repeat="message in messages" class="{{message.from}}">
-                            <p>{{message.text}}</p>
-                        </div>
-
+                    <div ng-repeat="message in messages" class="{{message.from}}">
+                        <p>{{message.text}}</p>
+                    </div>
                 </div>
-
 
 
                 <form class="message-box">
                     <textarea type="text" class="message-input" placeholder="Type message..." data-ng-model="text"></textarea>
-                    <button type="submit" class="message-submit" data-ng-click="messageInput()">Send</button>
+                    <button class="message-submit" data-ng-click="messageInput()">Send</button>
                 </form>
             </div>
         </div>

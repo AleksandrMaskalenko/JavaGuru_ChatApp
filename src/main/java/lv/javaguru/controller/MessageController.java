@@ -23,4 +23,9 @@ public class MessageController {
     public List<ConvMessage> getMessages(@PathVariable int conv_id) {
         return convMessageService.getMessages(conv_id);
     }
+
+    @RequestMapping(value = "/deleteall/{conv_id}", method = RequestMethod.POST)
+    public void deleteMessage(@PathVariable int conv_id) {
+        convMessageService.deleteAllMessages(conv_id);
+    }
 }

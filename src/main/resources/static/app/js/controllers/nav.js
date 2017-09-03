@@ -17,11 +17,4 @@ angular.module('myApp')
 		$state.go('login');
 	};
 
-    $scope.loadData = function () {
-        $http.get('http://localhost:8080/songs').then(function (response) {
-            $rootScope.songs = response.data;
-        });
-    };
-
-
 });

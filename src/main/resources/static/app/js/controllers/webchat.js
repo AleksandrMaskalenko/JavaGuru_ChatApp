@@ -84,8 +84,16 @@ angular.module('myApp')
     };
 
 
+    $rootScope.participants = [];
 
     $rootScope.convers = function () {
+        $rootScope.participants = [];
+        $rootScope.convtitle = '';
+        $rootScope.addUser = false;
+        $rootScope.trash = false;
+        $rootScope.sing_out = false;
+        $rootScope.particip = false;
+
         $http.get('http://localhost:8080/conversation/userconv/' + $scope.user.principal.id).then(function (response) {
             $rootScope.conversations = response.data;
         });
@@ -109,13 +117,46 @@ angular.module('myApp')
     };
 
     var messages_array = [];
+    $rootScope.convtitle = '';
+    $rootScope.addUser = false;
+    $rootScope.trash = false;
+    $rootScope.sing_out = false;
+    $rootScope.particip = false;
+    $rootScope.addUserForm = false;
 
     $scope.loadChat = function (conversation) {
+        $rootScope.participants = [];
         messages_array = [];
 
         convers = conversation;
 
-        $rootScope.convtitle = conversation.title;
+        if (conversation.convType === 'group') {
+            $rootScope.convtitle = 'group chat: ' + conversation.title;
+        } else {
+            $rootScope.convtitle = conversation.title;
+        }
+
+
+        if ((conversation.user.id === $scope.user.principal.id) && ('group' === conversation.convType)) {
+            $rootScope.addUser = true;
+        } else {
+            $rootScope.addUser = false;
+        }
+
+        if ((conversation.user.id !== $scope.user.principal.id) && ('group' === conversation.convType)) {
+            $rootScope.trash = false;
+            $rootScope.sing_out = true;
+        } else {
+            $rootScope.trash = true;
+            $rootScope.sing_out = false;
+        }
+
+        if ('group' === conversation.convType) {
+            $rootScope.particip = true;
+        } else {
+            $rootScope.particip = false;
+        }
+
 
         function compare(a,b) {
             if (a.date < b.date)
@@ -123,7 +164,7 @@ angular.module('myApp')
             if (a.date > b.date)
                 return 1;
             return 0;
-        }
+        };
         
         var messFrom = function (id) {
             if (id === $scope.user.principal.id) {
@@ -135,7 +176,7 @@ angular.module('myApp')
 
         $http.get('http://localhost:8080/message/load/' + conversation.conv_id).then(function (response) {
 
-            for (let message of response.data) {
+            for (var message of response.data) {
                 var newMessageObj = {
                     text: message.text,
                     date: message.date,
@@ -146,6 +187,9 @@ angular.module('myApp')
             }
             $scope.messages = messages_array.sort(compare);
         });
+
+
+
 
     };
 
@@ -169,6 +213,103 @@ angular.module('myApp')
         });
 
     };
+
+    $scope.groupChatForm = false;
+    $scope.participantsForm = false;
+
+    $scope.addGroupChatForm = function () {
+        if ($scope.groupChatForm === true) {
+            $scope.groupChatForm = false;
+        } else {
+            $scope.groupChatForm = true;
+        }
+
+
+    };
+
+    $scope.addGroupChat =function () {
+
+        var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        var convObj = {
+            title: $scope.addGroupTitle,
+            creationDate: utc,
+            convType: 'group',
+            user: { id: $scope.user.principal.id}
+
+        };
+
+        $http.post('http://localhost:8080/conversation/create', convObj).success(function () {
+            $rootScope.convers();
+        });
+
+        $scope.groupChatForm = false;
+
+    };
+
+    $rootScope.showParticipants = function () {
+        if ($rootScope.participants.length !== 0) {
+            $rootScope.participants = [];
+            $rootScope.participForm = false;
+        } else {
+            $http.get('http://localhost:8080/participant/load/' + convers.conv_id).then(function (response) {
+
+                $rootScope.participForm = true;
+                $rootScope.participants = response.data;
+            });
+        }
+
+
+    };
+
+    $rootScope.addUserAction = function () {
+        if ($rootScope.addUserForm === true) {
+            $rootScope.addUserForm = false;
+        } else {
+            $rootScope.addUserForm = true;
+        }
+
+        $rootScope.loadFriends();
+
+
+    };
+
+    $scope.addU = function (user) {
+        var newParticipObj = {
+            user: user,
+            conversation: convers,
+        };
+
+        $http.post('http://localhost:8080/participant/add', newParticipObj).success(function () {
+
+        });
+
+        $rootScope.participants.push(newParticipObj);
+    };
+
+    $scope.deleteU = function (participant) {
+        var idx = $scope.participants.indexOf(participant);
+        $http.post('http://localhost:8080/participant/delete/' + participant.part_id).then($scope.participants.splice(idx, 1));
+
+    };
+
+    $scope.deleteGroup = function () {
+        $http.post('http://localhost:8080/participant/deleteall/' +  convers.conv_id).success(function () {
+            $rootScope.convers();
+            $scope.messages = [];
+        });
+        $http.post('http://localhost:8080/message/deleteall/' +  convers.conv_id);
+        $http.post('http://localhost:8080/conversation/deleteconv/' +  convers.conv_id);
+
+    };
+
+    $scope.singOut = function () {
+        $http.post('http://localhost:8080/participant/deletebyuser/' +  convers.conv_id).success(function () {
+            $rootScope.convers();
+            $scope.messages = [];
+        });
+    }
+
+
 
 
 });

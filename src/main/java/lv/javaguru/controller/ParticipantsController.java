@@ -24,9 +24,19 @@ public class ParticipantsController {
         participantsService.deleteParticipant(part_id);
     }
 
+    @RequestMapping(value = "/deleteall/{conv_id}", method = RequestMethod.POST)
+    public void deleteAllParticipants(@PathVariable int conv_id) {
+        participantsService.deleteAllParticipants(conv_id);
+    }
+
     @RequestMapping(value = "/load/{conv_id}")
     public List<Participants> loadParticipantsOfConv(@PathVariable int conv_id) {
         return participantsService.loadParticipantsOfConv(conv_id);
+    }
+
+    @RequestMapping(value = "/deletebyuser/{conv_id}", method = RequestMethod.POST)
+    public void deleteParticipByUserId(@PathVariable int conv_id) {
+        participantsService.deletParticipByUserId(conv_id);
     }
 
 }
