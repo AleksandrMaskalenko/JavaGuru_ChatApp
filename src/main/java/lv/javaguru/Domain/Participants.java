@@ -22,7 +22,8 @@ public class Participants {
     public Participants() {
     }
 
-    public Participants(Conversation conversation, User user) {
+    public Participants(int part_id, Conversation conversation, User user) {
+        this.part_id = part_id;
         this.conversation = conversation;
         this.user = user;
     }

@@ -27,7 +27,8 @@ public class Conversation {
     public Conversation() {
     }
 
-    public Conversation(String title, String creationDate, String convType, User user) {
+    public Conversation(int conv_id, String title, String creationDate, String convType, User user) {
+        this.conv_id = conv_id;
         this.title = title;
         this.creationDate = creationDate;
         this.convType = convType;
