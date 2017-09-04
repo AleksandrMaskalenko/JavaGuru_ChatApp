@@ -24,9 +24,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RoleDAO roleDAO;
 
-    @Autowired
-    private FriendListDAO friendListDAO;
-
     public User getUserById(int id) {
         return userDAO.findOne(id);
     }
@@ -53,5 +50,9 @@ public class UserService implements UserDetailsService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedUsername = auth.getName();
         return userDAO.findOneByUsername(loggedUsername);
+    }
+
+    public void logout() {
+        SecurityContextHolder.clearContext();
     }
 }

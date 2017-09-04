@@ -2,6 +2,17 @@ angular.module('myApp')
 
 .controller('LoginController', function($http, $scope, $state, AuthService, $rootScope) {
 
+
+	function reload() {
+        $http.get('http://localhost:8080/user/reload').success(function(res) {
+            AuthService.user = res;
+            $rootScope.$broadcast('LoginSuccessful');
+            $state.go('home');
+        });
+    }
+
+    reload();
+
 	$scope.login = function() {
 
 		var base64Credential = btoa($scope.username + ':' + $scope.password);
@@ -17,7 +28,7 @@ angular.module('myApp')
 				$scope.message = '';
 
 				$http.defaults.headers.common['Authorization'] = 'Basic ' + base64Credential;
-				AuthService.user = res;
+				AuthService.user = res.principal;
 				$rootScope.$broadcast('LoginSuccessful');
 				$state.go('home');
 			} else {
@@ -29,6 +40,7 @@ angular.module('myApp')
 	};
 
 	$scope.logout = function() {
+        $http.post('http://localhost:8080/user/logout');
 
 		$http.defaults.headers.common['Authorization'] = null;
 		$scope.user = null;

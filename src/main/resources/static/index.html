@@ -27,11 +27,11 @@
 <div class="row hat">
 	<div class="large-12 columns">
 		<ul class="log-in right">
-			<li data-ng-show="user.principal.username">Hi, {{user.principal.username}}</li>
-			<li data-ng-show="!user.principal.username"><a data-ui-sref="login">Sign In</a></li>
-			<li data-ng-show="!user.principal.username"><a data-ui-sref="register">Register</a></li>
+			<li data-ng-show="user.username">Hi, {{user.username}}</li>
+			<li data-ng-show="!user.username"><a data-ui-sref="login">Sign In</a></li>
+			<li data-ng-show="!user.username"><a data-ui-sref="register">Register</a></li>
 			<li><a data-ui-sref="home">Home</a></li>
-			<li data-ng-show="user.principal.username"><a data-ng-click="logout()">Logout</a></li>
+			<li data-ng-show="user.username"><a data-ng-click="logout()">Logout</a></li>
 		</ul>
 	</div>
 </div>

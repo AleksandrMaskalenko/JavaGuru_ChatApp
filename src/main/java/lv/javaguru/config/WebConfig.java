@@ -35,7 +35,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**", "/index.html", "/app/**", "/register", "/favicon.ico", "/upload", "/downloadSong").permitAll()
 				.anyRequest().fullyAuthenticated().and()
 				.httpBasic().and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
 				.csrf().disable();
 	}
 

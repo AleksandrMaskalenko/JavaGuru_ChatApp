@@ -8,6 +8,8 @@ angular.module('myApp')
 
     $rootScope.user = AuthService.user;
 
+
+
     $scope.$on('LoginSuccessful', function() {
         $rootScope.user = AuthService.user;
     });
@@ -15,6 +17,7 @@ angular.module('myApp')
         $rootScope.user = null;
     });
     $rootScope.logout = function() {
+        $http.post('http://localhost:8080/user/logout');
         AuthService.user = null;
         $rootScope.$broadcast('LogoutSuccessful');
         $state.go('login');
@@ -43,7 +46,7 @@ angular.module('myApp')
 
 
     $rootScope.loadFriends = function () {
-        $http.get('http://localhost:8080/friend/userfriends/' + $scope.user.principal.id).then(function (response) {
+        $http.get('http://localhost:8080/friend/userfriends/' + $scope.user.id).then(function (response) {
             $rootScope.friends = response.data;
         });
     };
@@ -54,19 +57,19 @@ angular.module('myApp')
     };
 
     $scope.deleteUser = function () {
-        $http.post('http://localhost:8080/user/delete/' + $scope.user.principal.id);
+        $http.post('http://localhost:8080/user/delete/' + $scope.user.id);
     };
 
     $rootScope.loadUserData = function () {
-        $rootScope.name = $scope.user.principal.name;
-        $rootScope.email = $scope.user.principal.email;
-        $rootScope.username = $scope.user.principal.username;
-        $rootScope.password = $scope.user.principal.password;
+        $rootScope.name = $scope.user.name;
+        $rootScope.email = $scope.user.email;
+        $rootScope.username = $scope.user.username;
+        $rootScope.password = $scope.user.password;
     };
 
     $scope.updateUser = function () {
         var userObjUpd = {
-            id: $scope.user.principal.id,
+            id: $scope.user.id,
             name: $scope.name,
             email: $scope.email,
             username: $scope.username,
@@ -94,7 +97,7 @@ angular.module('myApp')
         $rootScope.sing_out = false;
         $rootScope.particip = false;
 
-        $http.get('http://localhost:8080/conversation/userconv/' + $scope.user.principal.id).then(function (response) {
+        $http.get('http://localhost:8080/conversation/userconv/' + $scope.user.id).then(function (response) {
             $rootScope.conversations = response.data;
         });
     };
@@ -107,7 +110,7 @@ angular.module('myApp')
             title: friend.user.username,
             creationDate: utc,
             convType: 'pair',
-            user: { id: $scope.user.principal.id}
+            user: { id: $scope.user.id}
 
         };
 
@@ -137,13 +140,13 @@ angular.module('myApp')
         }
 
 
-        if ((conversation.user.id === $scope.user.principal.id) && ('group' === conversation.convType)) {
+        if ((conversation.user.id === $scope.user.id) && ('group' === conversation.convType)) {
             $rootScope.addUser = true;
         } else {
             $rootScope.addUser = false;
         }
 
-        if ((conversation.user.id !== $scope.user.principal.id) && ('group' === conversation.convType)) {
+        if ((conversation.user.id !== $scope.user.id) && ('group' === conversation.convType)) {
             $rootScope.trash = false;
             $rootScope.sing_out = true;
         } else {
@@ -167,7 +170,7 @@ angular.module('myApp')
         };
         
         var messFrom = function (id) {
-            if (id === $scope.user.principal.id) {
+            if (id === $scope.user.id) {
                return 'message-remote'
             } else {
                 return 'message-local'
@@ -204,7 +207,7 @@ angular.module('myApp')
             var newMessageObj = {
                 text: convMessObj.text,
                 date: convMessObj.date,
-                userName: $scope.user.principal.username,
+                userName: $scope.user.username,
                 from: 'message-remote'
             };
             messages_array.push(newMessageObj);
@@ -234,7 +237,7 @@ angular.module('myApp')
             title: $scope.addGroupTitle,
             creationDate: utc,
             convType: 'group',
-            user: { id: $scope.user.principal.id}
+            user: { id: $scope.user.id}
 
         };
 

@@ -51,14 +51,14 @@
                     </div>
 
 
-                <div  id="cont-mess">
+                <div  class="cont-mess">
                     <div ng-repeat="message in messages" class="{{message.from}}">
                         <p>{{message.text}}</p>
                     </div>
                 </div>
 
 
-                <form class="message-box">
+                <form  data-ng-show="convtitle" class="message-box">
                     <textarea type="text" class="message-input" placeholder="Type message..." data-ng-model="text"></textarea>
                     <button class="message-submit" data-ng-click="messageInput()">Send</button>
                 </form>

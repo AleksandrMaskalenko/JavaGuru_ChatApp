@@ -43,4 +43,14 @@ public class UserController {
     public Principal user(Principal principal) {
         return principal;
     }
+
+    @RequestMapping(value = "/reload", method = RequestMethod.GET)
+    public User reloadWebPage() {
+        return userService.authentication();
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public void logout() {
+        userService.logout();
+    }
 }
