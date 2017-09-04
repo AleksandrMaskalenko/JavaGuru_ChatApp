@@ -39,12 +39,14 @@ angular.module('myApp')
 		});
 	};
 
-	$scope.logout = function() {
+	$rootScope.logout = function() {
         $http.post('http://localhost:8080/user/logout');
 
 		$http.defaults.headers.common['Authorization'] = null;
 		$scope.user = null;
 		$scope.message = 'Successfully logged out';
 		$scope.resource = null;
+        $rootScope.$broadcast('LogoutSuccessful');
+		$state.go('login');
 	};
 });

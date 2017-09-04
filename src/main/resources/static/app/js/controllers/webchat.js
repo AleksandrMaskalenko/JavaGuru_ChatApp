@@ -16,12 +16,6 @@ angular.module('myApp')
     $scope.$on('LogoutSuccessful', function() {
         $rootScope.user = null;
     });
-    $rootScope.logout = function() {
-        $http.post('http://localhost:8080/user/logout');
-        AuthService.user = null;
-        $rootScope.$broadcast('LogoutSuccessful');
-        $state.go('login');
-    };
 
     $scope.findFriend = function () {
         $http.get('http://localhost:8080/user/find/' + $scope.find).then(function (response) {
